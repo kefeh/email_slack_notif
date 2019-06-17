@@ -13,14 +13,13 @@ def post_to_channel(webhook_url: str, message: str):
     :return:
     """
 
-    if True:  # should_send_slack_msg:
-        try:
-            response = requests.post(url=webhook_url, json={'text': message})
-            if response.status_code != 200:
-                return "Failed to send message. Status code:{}".format(response.status_code)
+    try:
+        response = requests.post(url=webhook_url, json={'text': message})
+        if response.status_code != 200:
+            return "Failed to send message. Status code:{}".format(response.status_code)
 
-            else:
-                return "Message successfully sent to channel"
+        else:
+            return "Message successfully sent to channel"
 
-        except Exception as ex:
-            return "Failed to send message because of {}".format(ex)
+    except Exception as ex:
+        return "Failed to send message because of {}".format(ex)
